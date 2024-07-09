@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative:regular,700,900" rel="stylesheet" />
+
+
+    <title>Parallax</title>
+</head>
+
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Cinzel+Decorative:regular,700,900);
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .keyart,
+    .keyart_layer {
+        height: 900px;
+    }
+
+    .keyart {
+        position: relative;
+        z-index: 10;
+
+    }
+
+    .keyart_layer {
+        background-position: bottom center;
+        background-size: auto 900px;
+        background-repeat: no-repeat;
+        width: 100%;
+        position: absolute;
+        object-fit: cover;
+
+    }
+
+    .keyart_layer.parallax {
+        position: fixed;
+    }
+
+    .main-content {
+        width: 100%;
+        position: absolute;
+        z-index: 200;
+    }
+
+
+    #keyart-2 {
+        background-image: url(https://i.imgur.com/vNIwktS.png);
+    }
+
+    #keyart-3 {
+        background-image: url(https://i.imgur.com/ffMxdNs.png);
+        background-size: 35%;
+        margin-top: -420px;
+    }
+
+    #keyart-4 {
+        background-image: url(https://i.imgur.com/INGkHyE.png);
+    }
+
+
+
+
+    #keyart-scrim {
+        opacity: 0;
+    }
+
+    .logo {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-family: 'Cinzel Decorative';
+        font-size: 1.2em;
+        color: #f9e3fd;
+        font-size: 50px;
+        font-weight: bolder;
+        text-shadow: 5px 5px black;
+    }
+
+    
+</style>
+
+<body>
+    <section>
+        <div class="keyart" id="parallaxx">
+            <div class="logo keyart_layer parallax">
+            </div>
+            <div class="keyart_layer parallax" id="keyart-2" data-speed="2"></div>
+
+            <div class="keyart_layer parallax" id="keyart-3" data-speed="0"></div>
+
+            <div class="keyart_layer" id="keyart-4" data-speed="10"></div>
+
+
+        </div>
+    </section>
+
+
+    <section class="main-content">
+        <div style="height: 2000px;background-color:#70347C">
+            <!--Put your site content here-->
+            <div class="logo">
+                EXPERIENCE A WHOLE NEW LEVEL OF MMORPG <br> <br>
+                <img width="600" height="350" src="https://i.imgur.com/56ZN0Pc.gif">
+               
+
+                <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+            </div>
+            <p class="logo" style="font-size: 1.7em; text-shadow: 2px 2px black;">Amethaverse is a MMORPG NFT Game
+                Developed by a group of filipino ITs formed in which caught their individual interest.<br> <br>
+            An open world where you are freely to explore the whole vast world of Amethaverse</p>
+
+        </div>
+
+
+
+
+
+
+
+    </section>
+
+    <section>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--Uses JQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        function castParallax() {
+
+            var opThresh = 350;
+            var opFactor = 750;
+
+            window.addEventListener("scroll", function (event) {
+                var top = this.pageYOffset;
+
+                var layers = document.getElementsByClassName("parallax parallaxx");
+                var layer, speed, yPos;
+                for (var i = 0; i < layers.length; i++) {
+                    layer = layers[i];
+                    speed = layer.getAttribute('data-speed');
+                    var yPos = -(top * speed / 100);
+                    layer.setAttribute('style', 'transform: translate3d(0px, ' + yPos + 'px, 0px)');
+                }
+            });
+        }
+
+        function dispelParallax() {
+            $("#nonparallax").css('display', 'block');
+            $("#parallax").css('display', 'none');
+        }
+
+        function castSmoothScroll() {
+            $.srSmoothscroll({
+                step: 80,
+                speed: 300,
+                ease: 'linear'
+            });
+        }
+
+        function startSite() {
+            var platform = navigator.platform.toLowerCase();
+            var userAgent = navigator.userAgent.toLowerCase();
+
+            if (platform.indexOf('ipad') != -1 || platform.indexOf('iphone') != -1) {
+                dispelParallax();
+            } else if (platform.indexOf('win32') != -1 || platform.indexOf('linux') != -1) {
+                castParallax();
+                if ($.browser.webkit) {
+                    castSmoothScroll();
+                }
+            } else {
+                castParallax();
+            }
+        }
+
+        document.body.onload = startSite();
+    </script>
+
+</body>
+
+
+
+</html>
