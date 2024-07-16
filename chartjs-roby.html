@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Most Left-Handed People</title>
+    <link rel="icon" type="image/png" href="https://www.svgrepo.com/show/327290/hand-left.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+
+<body>
+    
+    <div class="container">
+        <div style="width: 1100px; height: 700px;">
+            <canvas id="leftHanded"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let labels = ['Netherlands', 'United States', 'Canada', 'United Kingdom', 'France', 'Germany',
+    'Spain', 'India', 'Japan', 'China'];
+
+        let cal = [13.23, 13.10, 12.80, 12.24, 11.15, 9.83, 9.63, 5.20, 4.70, 3.50];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                data: cal   ,
+                backgroundColor: ['rgb(181, 159, 48)', 'rgb(137, 181, 48)', 'rgb(48, 137, 181)',
+                    'rgb(48, 181, 159)', 'rgb(132, 44, 177)', 'rgb(44, 155, 177)', 'rgb(177, 44, 89)',
+                    'rgb(177, 44, 155)', 'rgb(177, 117, 44)', 'rgb(44, 177, 133)']
+            }]
+        };
+
+        const config = {
+            type: 'horizontalBar',
+            data: data,
+            options: {
+                title: {
+                    display: true,
+                    text: 'The Countries With The Most Left-Handed People (A total of: 100%)'
+                },
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        const chart = new Chart(
+            document.getElementById('leftHanded'),
+            config
+        );
+    </script>
+</body>
+</head>
+</html>
